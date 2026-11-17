@@ -12,9 +12,9 @@
  */
 
 /** AEM publish tier serving the persisted queries and assets. */
-const AEM_PUBLISH_HOST = 'https://publish-p153659-e1614626.adobeaemcloud.com';
+const AEM_PUBLISH_HOST = 'https://publish-p153659-e1614585.adobeaemcloud.com';
 /** Persisted query: {configuration}/{query name}. */
-const PERSISTED_QUERY = 'wknd-universal/getTelusOffer';
+const PERSISTED_QUERY = 'ref-demo-eds/getTelusOffer';
 /** Only DAM paths made of safe characters are accepted. */
 const CF_PATH_PATTERN = /\/content\/dam\/[\w\-/.]+/;
 const REQUEST_TIMEOUT_MS = 10000;
