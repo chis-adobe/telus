@@ -39,7 +39,9 @@
   --background-color: white;
   --light-color: #f4f4f7;
   --dark-color: #2a2c2e;
-  --muted-text-color: #54595f;
+  --muted-text-color: #414547;
+  --accent-purple: #7c53a5;
+  --surface-grey: #f7f7f8;
   --text-color: #2a2c2e;
   --link-color: #4b286d;
   --link-hover-color: #2a1a3d;
@@ -111,11 +113,11 @@
 
   /* buttons (primary CTA = action color; secondary = outline) */
   --button-margin: 12px 0; /* @boilerplate */
-  --button-padding: 0.75em 1.75em;
-  --button-border-width: 2px; /* @boilerplate */
-  --button-border-radius: 4px;
-  --button-font-weight: 500; /* @boilerplate */
-  --button-line-height: 1.25; /* @boilerplate */
+  --button-padding: 10px 30px;
+  --button-border-width: 1px;
+  --button-border-radius: 32px;
+  --button-font-weight: 700;
+  --button-line-height: 1.5;
   --button-background: var(--brand-secondary);
   --button-hover-background: var(--brand-secondary-hover);
   --button-text-color: var(--background-color); /* @boilerplate */
@@ -625,6 +627,23 @@ main .section.purple {
 
   --link-color: var(--background-color);
   --link-hover-color: var(--background-color);
+}
+
+/* section style: banner — slim centred promo strip (e.g. "Be the first to hear ...") */
+main .section.banner {
+  padding: var(--spacing-m) 0;
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted-text-color);
+}
+
+main .section.banner p {
+  margin: 0;
+}
+
+main .section.banner a {
+  color: var(--brand-secondary);
+  text-decoration: underline;
 }
 
 /* section style: dark — black background with white text (telus.com offers band) */

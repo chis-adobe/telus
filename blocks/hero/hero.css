@@ -1,70 +1,86 @@
 @import url('./hero-tokens.css');
 
-/* TELUS hero: headline + CTA on the left, campaign image on the right */
+/* TELUS hero (telus.com): campaign image on the left, purple headline + CTA on the right */
 main .section.hero-container {
   padding: 0;
-  background-color: var(--brand-primary-light);
 }
 
 main .section.hero-container > .hero-wrapper {
   max-width: var(--max-width-site);
-  padding: 0;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  min-height: var(--hero-min-height);
+  gap: var(--spacing-l);
+  padding: var(--hero-padding);
+}
+
+.hero .hero-media {
+  order: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero .hero-media picture {
+  display: block;
+}
+
+.hero .hero-media img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
 }
 
 .hero .hero-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--hero-padding);
 }
 
 .hero h1 {
-  margin: 0 0 var(--spacing-s);
+  margin: 0 0 var(--spacing-m);
   color: var(--brand-primary);
-  font-size: var(--heading-font-size-xl);
-  font-weight: 500;
-  line-height: 1.1;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
 }
 
 .hero p {
-  margin: 0 0 var(--spacing-xs);
-  font-size: var(--body-font-size-m);
+  margin: 0;
+  color: var(--muted-text-color);
+  font-size: 16px;
+  line-height: 1.55;
 }
 
 .hero .hero-content .button-wrapper {
-  margin-top: var(--spacing-s);
+  margin-top: var(--spacing-l);
 }
 
-.hero .hero-media picture,
-.hero .hero-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero .hero-content .button-wrapper a.button {
+  margin: 0;
 }
 
 @media (width >= 900px) {
   .hero {
     flex-direction: row;
-    align-items: stretch;
-  }
-
-  .hero .hero-content {
-    flex: 1 1 45%;
+    align-items: center;
+    gap: var(--spacing-xxl);
     padding: var(--hero-padding-desktop);
   }
 
-  .hero h1 {
-    font-size: var(--heading-font-size-xxl);
+  .hero .hero-media {
+    flex: 0 0 34%;
   }
 
-  .hero .hero-media {
-    flex: 1 1 55%;
+  .hero .hero-content {
+    flex: 1;
+  }
+
+  .hero h1 {
+    font-size: 56px;
+    line-height: 64px;
   }
 }

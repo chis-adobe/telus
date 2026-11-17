@@ -30,34 +30,127 @@
   }
 }
 
-/* variant: app — image + promo text (My TELUS app) */
+/* variant: app — My TELUS app panel: text, QR code + store badges, phone image */
+.columns.app > div {
+  gap: var(--spacing-l);
+  padding: var(--spacing-xl) var(--spacing-l) 0;
+  border-radius: var(--border-radius-l);
+  background-color: var(--brand-primary-light);
+  overflow: hidden;
+}
+
+.columns.app h2 {
+  margin: 0 0 var(--spacing-s);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.035em;
+}
+
+.columns.app p {
+  margin: 0 0 var(--spacing-s);
+  color: var(--muted-text-color);
+  font-size: 16px;
+}
+
+.columns.app p:has(> small) {
+  margin-top: -8px;
+  font-size: 13px;
+}
+
+.columns.app p:has(picture) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-m);
+  margin-top: var(--spacing-m);
+}
+
+.columns.app p:has(picture) img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.columns.app p:has(picture) > picture:first-child img {
+  height: 120px;
+}
+
+.columns.app .columns-img-col {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+}
+
 .columns.app .columns-img-col img {
-  width: 100%;
-  max-height: 380px;
+  width: auto;
+  max-width: 100%;
+  max-height: 420px;
   object-fit: contain;
 }
 
-/* variant: links — centred icon links (Need more information?) */
-.columns.links > div {
-  gap: var(--spacing-m);
+/* variant: info — "Need more information?": intro column + icon link columns */
+.columns.info > div {
+  gap: var(--spacing-l);
+  align-items: flex-start;
 }
 
-.columns.links > div > div {
-  padding: var(--spacing-l);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-l);
-  text-align: center;
+.columns.info h2,
+.columns.info h3 {
+  margin: 0 0 var(--spacing-xs);
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.columns.links img {
+.columns.info p {
+  margin: 0;
+  color: var(--muted-text-color);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.columns.info p:has(> picture) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 48px;
   height: 48px;
+  margin-bottom: var(--spacing-xs);
+  border-radius: 50%;
+  background-color: var(--light-color);
 }
 
-.columns.links p {
-  margin: 0;
+.columns.info p > picture img {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
-.columns.links a {
-  font-weight: 500;
+.columns.info a {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  .columns.app > div {
+    flex-direction: row;
+    align-items: center;
+    padding: 48px 56px 0;
+  }
+
+  .columns.app > div > div:not(.columns-img-col) {
+    padding-bottom: 48px;
+  }
+
+  .columns.app h2 {
+    font-size: 32px;
+  }
+
+  .columns.info > div {
+    align-items: flex-start;
+  }
+
+  .columns.info > div > div:first-child {
+    flex: 1.5;
+  }
 }
