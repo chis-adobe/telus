@@ -627,6 +627,20 @@ main .section.purple {
   --link-hover-color: var(--background-color);
 }
 
+/* section style: dark — black background with white text (telus.com offers band) */
+main .section.dark {
+  background-color: #000;
+  color: var(--background-color);
+
+  --link-color: var(--background-color);
+  --link-hover-color: var(--background-color);
+}
+
+main .section.dark h1,
+main .section.dark h2 {
+  color: var(--background-color);
+}
+
 /*
  * Section style: offers-grid
  * Arranges every block in the section side by side (stacked on mobile).
@@ -652,20 +666,32 @@ main .section.offers-grid > div:not(.bg-image) {
 
 main .section.offers-grid > .default-content-wrapper {
   grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  column-gap: var(--spacing-l);
+  margin-bottom: var(--spacing-s);
 }
 
 main .section.offers-grid > .default-content-wrapper h2 {
-  margin: 0;
+  margin: 0 0 var(--spacing-s);
   color: var(--brand-primary);
+  font-size: var(--heading-font-size-xl);
+  font-weight: 400;
+  letter-spacing: -0.035em;
 }
 
 main .section.offers-grid > .default-content-wrapper p {
   margin: 0;
+  font-size: var(--body-font-size-s);
+}
+
+main .section.offers-grid > .default-content-wrapper p > a:only-child::after {
+  content: ' \2192';
+}
+
+/* full-bleed band when the offers grid also has a background style */
+main .section.offers-grid.dark,
+main .section.offers-grid.light,
+main .section.offers-grid.purple {
+  max-width: none;
+  padding-inline: max(var(--spacing-m), calc((100% - var(--max-width-site)) / 2 + var(--spacing-m)));
 }
 
 main .section.offers-grid > div:not(.default-content-wrapper) {

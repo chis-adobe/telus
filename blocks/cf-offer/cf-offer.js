@@ -12,7 +12,7 @@
  */
 
 /** AEM publish tier serving the persisted queries and assets. */
-const AEM_PUBLISH_HOST = 'https://publish-p130746-e1275972.adobeaemcloud.com';
+const AEM_PUBLISH_HOST = 'https://publish-p153659-e1614585.adobeaemcloud.com';
 /** Persisted query: {configuration}/{query name}. */
 const PERSISTED_QUERY = 'ref-demo-eds/getTelusOffer';
 /** Only DAM paths made of safe characters are accepted. */
@@ -137,7 +137,10 @@ function el(tag, className, text) {
 }
 
 /**
- * Builds the offer card from the fragment data.
+ * Builds the offer card from the fragment data (telus.com offer tile):
+ *   campaign → eyebrow label, headline → title, description → body text,
+ *   asset → product image (alt = offerTitle), ctaUrl → link on the whole card.
+ * ctaLabel is not displayed (the tile itself is the call to action).
  * @param {object} offer
  * @returns {Element}
  */
@@ -146,18 +149,24 @@ function renderOffer(offer) {
   const campaign = toText(offer.campaign);
   const headline = toText(offer.headline);
   const description = toText(offer.description);
-  const ctaLabel = toText(offer.ctaLabel);
   const ctaHref = safeHref(toText(offer.ctaUrl));
   const imageUrl = resolveAssetUrl(offer.asset);
 
-  const card = el('article', 'cf-offer-card');
+  const card = el(ctaHref ? 'a' : 'div', 'cf-offer-card');
+  if (ctaHref) card.href = ctaHref;
+
+  const body = el('div', 'cf-offer-body');
+  if (campaign) body.append(el('p', 'cf-offer-campaign', campaign));
+  if (headline) body.append(el('h3', 'cf-offer-headline', headline));
+  if (description) body.append(el('p', 'cf-offer-description', description));
+  card.append(body);
 
   if (imageUrl) {
     const media = el('div', 'cf-offer-media');
     const picture = document.createElement('picture');
     const img = document.createElement('img');
     img.src = imageUrl;
-    img.alt = ''; // decorative: the offer is fully described by the text below
+    img.alt = offerTitle;
     img.loading = 'lazy';
     img.decoding = 'async';
     picture.append(img);
@@ -165,19 +174,6 @@ function renderOffer(offer) {
     card.append(media);
   }
 
-  const body = el('div', 'cf-offer-body');
-  if (campaign) body.append(el('p', 'cf-offer-campaign', campaign));
-  if (offerTitle && offerTitle !== campaign) body.append(el('p', 'cf-offer-title', offerTitle));
-  if (headline) body.append(el('h3', 'cf-offer-headline', headline));
-  if (description) body.append(el('p', 'cf-offer-description', description));
-  if (ctaLabel && ctaHref) {
-    const ctaWrapper = el('p', 'button-wrapper cf-offer-cta');
-    const cta = el('a', 'button primary', ctaLabel);
-    cta.href = ctaHref;
-    ctaWrapper.append(cta);
-    body.append(ctaWrapper);
-  }
-  card.append(body);
   return card;
 }
 

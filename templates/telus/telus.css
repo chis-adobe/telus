@@ -14,7 +14,9 @@ body.telus main > .section h2 {
 }
 
 body.telus main > .section.purple h2,
-body.telus main > .section.purple h1 {
+body.telus main > .section.purple h1,
+body.telus main > .section.dark h2,
+body.telus main > .section.dark h1 {
   color: var(--background-color);
 }
 

@@ -1,24 +1,25 @@
-/* cf-offer — a single TELUS offer card. Layout of several cards belongs to the section. */
+/*
+ * cf-offer — a single TELUS offer tile (telus.com "latest offers" style).
+ * Layout of several tiles belongs to the section (e.g. "offers-grid").
+ */
 .cf-offer {
-  --cf-offer-background: var(--brand-primary);
-  --cf-offer-text-color: var(--background-color);
-  --cf-offer-label-background: var(--background-color);
-  --cf-offer-label-color: var(--brand-primary);
+  --cf-offer-background: #f7f7f8;
+  --cf-offer-label-color: #7c53a5;
+  --cf-offer-headline-color: var(--text-color);
+  --cf-offer-text-color: #414547;
   --cf-offer-radius: var(--border-radius-l);
 
   display: flex;
   height: 100%;
-  min-height: 420px;
+  min-height: 480px;
   border-radius: var(--cf-offer-radius);
   background-color: var(--cf-offer-background);
-  color: var(--cf-offer-text-color);
   overflow: hidden;
-  box-shadow: var(--card-shadow);
 }
 
 /* loading skeleton (before the Content Fragment arrives) */
 .cf-offer[data-status="loading"] {
-  background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 12%) 50%, transparent 70%);
+  background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 60%) 50%, transparent 70%);
   background-size: 200% 100%;
   animation: cf-offer-shimmer 1.4s linear infinite;
 }
@@ -29,101 +30,117 @@
 }
 
 .cf-offer[data-status="error"] {
-  background-color: var(--light-color);
-  box-shadow: none;
   border: 2px dashed var(--border-color);
+  opacity: 0.4;
 }
 
 .cf-offer .cf-offer-card {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: var(--spacing-xl) var(--spacing-l);
+  box-sizing: border-box;
+  color: var(--cf-offer-text-color);
+  text-decoration: none;
+  transition: box-shadow var(--transition-duration), transform var(--transition-duration);
 }
 
-.cf-offer .cf-offer-media {
-  aspect-ratio: 4 / 3;
-  background-color: var(--brand-primary-dark);
-  overflow: hidden;
+.cf-offer a.cf-offer-card:hover {
+  color: var(--cf-offer-text-color);
+  text-decoration: none;
+  box-shadow: inset 0 0 0 2px var(--cf-offer-label-color);
 }
 
-.cf-offer .cf-offer-media picture,
-.cf-offer .cf-offer-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
+.cf-offer a.cf-offer-card:focus-visible {
+  outline: 3px solid var(--cf-offer-label-color);
+  outline-offset: -3px;
 }
 
 .cf-offer .cf-offer-body {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-l) var(--spacing-l) var(--spacing-xl);
+  gap: var(--spacing-s);
 }
 
 .cf-offer .cf-offer-campaign {
   margin: 0;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background-color: var(--cf-offer-label-background);
   color: var(--cf-offer-label-color);
-  font-size: var(--body-font-size-xs);
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
   text-transform: uppercase;
-}
-
-.cf-offer .cf-offer-title {
-  margin: var(--spacing-xs) 0 0;
-  font-size: var(--body-font-size-xs);
-  font-weight: 500;
-  opacity: 0.85;
 }
 
 .cf-offer .cf-offer-headline {
   margin: 0;
-  color: var(--cf-offer-text-color);
-  font-size: var(--heading-font-size-s);
-  font-weight: 500;
+  color: var(--cf-offer-headline-color);
+  font-size: 28px;
+  font-weight: 400;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
+}
+
+.cf-offer a.cf-offer-card:hover .cf-offer-headline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .cf-offer .cf-offer-description {
-  margin: 0;
+  margin: var(--spacing-xs) 0 0;
   font-size: var(--body-font-size-s);
-  opacity: 0.92;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
-/* CTA sits at the bottom so cards in a row line up */
-.cf-offer .cf-offer-cta {
-  margin: auto 0 0;
-  padding-top: var(--spacing-m);
+/* product image sits at the bottom of the tile, centred */
+.cf-offer .cf-offer-media {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 200px;
+  margin-top: var(--spacing-l);
 }
 
-.cf-offer .cf-offer-cta a.button {
-  margin: 0;
-  background-color: var(--button-background);
-  color: var(--button-text-color);
+.cf-offer .cf-offer-media picture {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.cf-offer .cf-offer-cta a.button:hover,
-.cf-offer .cf-offer-cta a.button:focus {
-  background-color: var(--button-hover-background);
-  color: var(--button-text-color);
-  text-decoration: none;
+.cf-offer .cf-offer-media img {
+  display: block;
+  width: auto;
+  max-width: 85%;
+  max-height: 260px;
+  object-fit: contain;
+
+  /* blend white product-shot backgrounds into the tile */
+  mix-blend-mode: multiply;
 }
 
-.cf-offer .cf-offer-cta a.button:focus-visible {
-  outline: var(--focus-ring-width) solid var(--background-color);
-  outline-offset: var(--focus-ring-offset);
+@media (width >= 900px) {
+  .cf-offer {
+    min-height: 600px;
+  }
+
+  .cf-offer .cf-offer-card {
+    padding: 44px var(--spacing-xxl);
+  }
+
+  .cf-offer .cf-offer-headline {
+    font-size: 36px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cf-offer[data-status="loading"] {
     animation: none;
+  }
+
+  .cf-offer .cf-offer-card {
+    transition: none;
   }
 }
