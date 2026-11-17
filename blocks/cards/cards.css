@@ -173,3 +173,43 @@
     padding: var(--spacing-xl) var(--spacing-xxl) var(--spacing-m);
   }
 }
+
+/* variant: dark — promo tiles on a dark/purple section: translucent tiles, white text and buttons */
+.cards.promo.dark > ul > li {
+  border-radius: 12px;
+  background-color: rgb(0 0 0 / 30%);
+}
+
+.cards.promo.dark > ul > li .cards-card-image img {
+  max-height: 220px;
+  mix-blend-mode: normal;
+}
+
+.cards.promo.dark .cards-card-body,
+.cards.promo.dark .cards-card-body h2 {
+  color: var(--background-color);
+}
+
+.cards.promo.dark .cards-card-body a:not(.button) {
+  color: var(--background-color);
+}
+
+/* optional eyebrow (e.g. "Price drop"): a first paragraph without a link */
+.cards.promo .cards-card-body > p:first-child:not(:has(a)) {
+  margin-bottom: var(--spacing-xs);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cards.promo.dark .cards-card-body a.button {
+  border-color: var(--background-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.cards.promo.dark .cards-card-body a.button:hover,
+.cards.promo.dark .cards-card-body a.button:focus {
+  background-color: var(--brand-primary-light);
+  color: var(--text-color);
+}

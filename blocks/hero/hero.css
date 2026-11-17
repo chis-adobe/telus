@@ -84,3 +84,52 @@ main .section.hero-container > .hero-wrapper {
     line-height: 64px;
   }
 }
+
+/*
+ * variant: dark — white text and button on a dark/purple section (e.g. "Too wild to wait."),
+ * image on the right. Pair with section style "purple" and a section background image.
+ */
+main .section.hero-container:has(.hero.dark) {
+  padding: var(--spacing-l) 0 var(--spacing-xxl);
+}
+
+.hero.dark .hero-media {
+  order: 0;
+}
+
+.hero.dark .hero-media img {
+  max-width: 520px;
+}
+
+.hero.dark h1 {
+  color: var(--background-color);
+  font-weight: 400;
+}
+
+.hero.dark p {
+  color: var(--background-color);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero.dark a.button {
+  border-color: var(--background-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.hero.dark a.button:hover,
+.hero.dark a.button:focus {
+  background-color: var(--brand-primary-light);
+  color: var(--text-color);
+}
+
+@media (width >= 900px) {
+  .hero.dark .hero-content {
+    flex: 0 0 50%;
+  }
+
+  .hero.dark .hero-media {
+    flex: 1;
+  }
+}
