@@ -29,3 +29,35 @@
     order: unset; /* @boilerplate */
   }
 }
+
+/* variant: app — image + promo text (My TELUS app) */
+.columns.app .columns-img-col img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+}
+
+/* variant: links — centred icon links (Need more information?) */
+.columns.links > div {
+  gap: var(--spacing-m);
+}
+
+.columns.links > div > div {
+  padding: var(--spacing-l);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-l);
+  text-align: center;
+}
+
+.columns.links img {
+  width: 48px;
+  height: 48px;
+}
+
+.columns.links p {
+  margin: 0;
+}
+
+.columns.links a {
+  font-weight: 500;
+}

@@ -52,6 +52,18 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Offers grid",
+            "value": "offers-grid"
+          },
+          {
+            "name": "Purple",
+            "value": "purple"
+          },
+          {
+            "name": "Light",
+            "value": "light"
           }
         ]
       },
@@ -143,6 +155,18 @@
         "name": "content",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "cf-offer",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "fragment",
+        "label": "Content Fragment path",
+        "description": "Path of the TELUS Offer Content Fragment, e.g. /content/dam/telus/en/offers/black-friday"
       }
     ]
   },

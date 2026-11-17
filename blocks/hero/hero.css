@@ -1,39 +1,70 @@
 @import url('./hero-tokens.css');
 
-.hero-container .hero-wrapper { /* @boilerplate */
-  max-width: unset; /* @boilerplate */
-  padding: 0; /* @boilerplate */
+/* TELUS hero: headline + CTA on the left, campaign image on the right */
+main .section.hero-container {
+  padding: 0;
+  background-color: var(--brand-primary-light);
 }
 
-.hero { /* @boilerplate */
-  position: relative; /* @boilerplate */
-  padding: var(--hero-padding); /* @boilerplate */
-  min-height: var(--hero-min-height); /* @boilerplate */
+main .section.hero-container > .hero-wrapper {
+  max-width: var(--max-width-site);
+  padding: 0;
 }
 
-.hero h1 { /* @boilerplate */
-  max-width: var(--hero-heading-max-width); /* @boilerplate */
-  margin-left: auto; /* @boilerplate */
-  margin-right: auto; /* @boilerplate */
-  color: var(--background-color); /* @boilerplate */
+.hero {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--hero-min-height);
 }
 
-.hero picture { /* @boilerplate */
-  position: absolute; /* @boilerplate */
-  z-index: -1; /* @boilerplate */
-  inset: 0; /* @boilerplate */
-  object-fit: cover; /* @boilerplate */
-  box-sizing: border-box; /* @boilerplate */
+.hero .hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--hero-padding);
 }
 
-.hero img { /* @boilerplate */
-  object-fit: cover; /* @boilerplate */
-  width: 100%; /* @boilerplate */
-  height: 100%; /* @boilerplate */
+.hero h1 {
+  margin: 0 0 var(--spacing-s);
+  color: var(--brand-primary);
+  font-size: var(--heading-font-size-xl);
+  font-weight: 500;
+  line-height: 1.1;
 }
 
-@media (width >= 900px) { /* @boilerplate */
-  .hero { /* @boilerplate */
-    padding: var(--hero-padding-desktop); /* @boilerplate */
+.hero p {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--body-font-size-m);
+}
+
+.hero .hero-content .button-wrapper {
+  margin-top: var(--spacing-s);
+}
+
+.hero .hero-media picture,
+.hero .hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (width >= 900px) {
+  .hero {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .hero .hero-content {
+    flex: 1 1 45%;
+    padding: var(--hero-padding-desktop);
+  }
+
+  .hero h1 {
+    font-size: var(--heading-font-size-xxl);
+  }
+
+  .hero .hero-media {
+    flex: 1 1 55%;
   }
 }

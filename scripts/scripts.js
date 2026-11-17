@@ -119,6 +119,24 @@ export function moveInstrumentation(from, to) {
   );
 }
 
+/** Folder the local dev server mounts content under (aem up --html-folder content). */
+const LOCAL_CONTENT_PREFIX = '/content';
+
+/**
+ * Resolves a site-relative content path for the environment the page is served from.
+ * Local previews serve pages under /content/; on Edge Delivery the path is unchanged.
+ * @param {string} path Site-relative path starting with '/'
+ * @returns {string}
+ */
+export function resolveContentPath(path) {
+  const local = window.location.pathname.startsWith(`${LOCAL_CONTENT_PREFIX}/`);
+  if (local && path.startsWith('/') && !path.startsWith(`${LOCAL_CONTENT_PREFIX}/`)) {
+    const doc = path.endsWith('/') ? `${path}index` : path;
+    return `${LOCAL_CONTENT_PREFIX}${doc}`;
+  }
+  return path;
+}
+
 /* add a block id_number to a block instance (when any decorate(block) defines it)
   to be used for martech tracking, aria-controls, aria-labelledby, etc.
 */
@@ -422,6 +440,27 @@ export function decorateMain(main) {
   if (FEATURES.spanTags) decorateSpanTags(main);
 }
 
+/** Page templates available under /templates/{name}/ (set via the "Template" page metadata). */
+const TEMPLATES = ['telus'];
+
+/**
+ * Loads the CSS and JS of the page template named in the "Template" metadata.
+ * The template JS may export a default function that receives the document.
+ * @param {Document} doc The document
+ */
+async function loadTemplate(doc) {
+  const template = toClassName(getMetadata('template'));
+  if (!TEMPLATES.includes(template)) return;
+  const base = `${window.hlx.codeBasePath}/templates/${template}/${template}`;
+  try {
+    const [, mod] = await Promise.all([loadCSS(`${base}.css`), import(`${base}.js`)]);
+    if (typeof mod.default === 'function') await mod.default(doc);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Failed to load template ${template}`, error);
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -429,6 +468,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  await loadTemplate(doc);
   if (FEATURES.themeSheet) loadThemeSpreadSheetConfig();
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;

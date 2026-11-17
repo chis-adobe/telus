@@ -24,6 +24,18 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Offers grid",
+              "value": "offers-grid"
+            },
+            {
+              "name": "Purple",
+              "value": "purple"
+            },
+            {
+              "name": "Light",
+              "value": "light"
             }
           ]
         },
@@ -53,6 +65,7 @@
         "accordion",
         "cards",
         "carousel",
+        "cf-offer",
         "columns",
         "embed",
         "fragment",

@@ -1,22 +1,111 @@
 @import url('./footer-tokens.css');
 
-footer { /* @boilerplate */
-  background-color: var(--light-color); /* @boilerplate */
-  font-size: var(--body-font-size-xs); /* @boilerplate */
+/*
+ * TELUS footer. Fragment sections, in order:
+ *   1. intro  – heading + service links (My TELUS, Support, ...)
+ *   2. links  – columns block (Company / Help / Legal / Other TELUS properties)
+ *   3. acknowledgement text
+ *   4. bottom – logo + copyright
+ */
+footer {
+  background-color: var(--light-color);
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div { /* @boilerplate */
-  margin: auto; /* @boilerplate */
-  max-width: var(--footer-max-width); /* @boilerplate */
-  padding: var(--footer-padding); /* @boilerplate */
+footer .footer > div {
+  margin: auto;
+  max-width: var(--footer-max-width);
+  padding: var(--footer-padding);
 }
 
-footer .footer p { /* @boilerplate */
-  margin: 0; /* @boilerplate */
+footer .footer .section {
+  padding: var(--spacing-l) 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
-@media (width >= 900px) { /* @boilerplate */
-  footer .footer > div { /* @boilerplate */
-    padding: var(--footer-padding-desktop); /* @boilerplate */
+footer .footer .section:last-child {
+  border-bottom: 0;
+}
+
+footer .footer p {
+  margin: 0;
+}
+
+footer .footer a:any-link {
+  color: var(--text-color);
+}
+
+footer .footer a:hover {
+  color: var(--brand-primary);
+}
+
+footer .footer h2,
+footer .footer h3 {
+  margin: 0 0 var(--spacing-s);
+  color: var(--brand-primary);
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+}
+
+footer .footer h4 {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+footer .footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer li {
+  margin: 6px 0;
+}
+
+/* section 1: inline service links */
+footer .footer .section:first-child ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs) var(--spacing-l);
+}
+
+footer .footer .section:first-child a {
+  color: var(--brand-primary);
+  font-weight: 500;
+}
+
+/* columns block inside the footer */
+footer .footer .columns > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--spacing-l);
+}
+
+footer .footer .section:last-child .default-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-m);
+}
+
+footer .footer .section:last-child img {
+  display: block;
+  height: 36px;
+  width: auto;
+}
+
+@media (width >= 900px) {
+  footer .footer > div {
+    padding: var(--footer-padding-desktop);
+  }
+
+  footer .footer .columns > div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

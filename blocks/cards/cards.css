@@ -27,3 +27,36 @@
   aspect-ratio: var(--cards-image-aspect-ratio); /* @boilerplate */
   object-fit: var(--cards-image-object-fit); /* @boilerplate */
 }
+
+/* variant: promo — large TELUS promo tiles (2-up on desktop) */
+.cards.promo > ul {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-l);
+}
+
+.cards.promo > ul > li {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  border-radius: var(--border-radius-l);
+  background-color: var(--light-color);
+  overflow: hidden;
+}
+
+.cards.promo .cards-card-image img {
+  aspect-ratio: 16 / 9;
+}
+
+.cards.promo .cards-card-body {
+  margin: 0;
+  padding: var(--spacing-l);
+}
+
+.cards.promo .cards-card-body h2 {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--heading-font-size-xs);
+}
+
+.cards.promo .cards-card-body p {
+  margin: 0 0 var(--spacing-xs);
+}

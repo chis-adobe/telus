@@ -48,3 +48,5 @@ https://main--ise-boilerplate--aemdemos.aem.page/docs/library/blocks/tabs
 
 https://main--ise-boilerplate--aemdemos.aem.page/docs/library/blocks/video
 
+https://main--telus--chis-adobe.aem.page/docs/library/blocks/cf-offer
+

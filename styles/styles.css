@@ -31,14 +31,18 @@
  */
 :root { /* @boilerplate */
   /* colors */
-  --brand-primary: #666; /* @boilerplate */
-  --brand-secondary: #999; /* @boilerplate */
-  --background-color: white; /* @boilerplate */
-  --light-color: #f8f8f8; /* @boilerplate */
-  --dark-color: #505050; /* @boilerplate */
-  --text-color: #131313; /* @boilerplate */
-  --link-color: #3b63fb; /* @boilerplate */
-  --link-hover-color: #1d3ecf; /* @boilerplate */
+  --brand-primary: #4b286d;
+  --brand-primary-dark: #2a1a3d;
+  --brand-primary-light: #f2eff4;
+  --brand-secondary: #2b8000;
+  --brand-secondary-hover: #1f5c09;
+  --background-color: white;
+  --light-color: #f4f4f7;
+  --dark-color: #2a2c2e;
+  --muted-text-color: #54595f;
+  --text-color: #2a2c2e;
+  --link-color: #4b286d;
+  --link-hover-color: #2a1a3d;
   --overlay-background-color: lightgrey; /* @boilerplate */
   --error-color: firebrick; /* @boilerplate */
 
@@ -49,8 +53,8 @@
   --color-action-hover: var(--link-hover-color); /* @boilerplate */
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif; /* @boilerplate */
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif; /* @boilerplate */
+  --body-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+  --heading-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace; /* @boilerplate */
 
   /* body sizes */
@@ -69,9 +73,9 @@
   --heading-font-size-xs: 24px; /* @boilerplate */
 
   /* line heights & weights */
-  --body-line-height: 1.6; /* @boilerplate */
-  --heading-line-height: 1.25; /* @boilerplate */
-  --heading-font-weight: 600; /* @boilerplate */
+  --body-line-height: 1.5;
+  --heading-line-height: 1.2;
+  --heading-font-weight: 500;
 
   /* space above/below text elements */
   --element-margin-top: 0.8em; /* @boilerplate */
@@ -87,9 +91,11 @@
 
   /* borders */
   --border-width-s: 1px; /* @boilerplate */
-  --border-color: var(--light-color); /* @boilerplate */
+  --border-color: #d8d8d8;
   --border-radius-s: 4px; /* @boilerplate */
   --border-radius-m: 8px; /* @boilerplate */
+  --border-radius-l: 16px;
+  --card-shadow: 0 2px 8px rgb(42 44 46 / 12%);
 
   /* motion */
   --transition-duration: 0.2s; /* @boilerplate */
@@ -105,13 +111,13 @@
 
   /* buttons (primary CTA = action color; secondary = outline) */
   --button-margin: 12px 0; /* @boilerplate */
-  --button-padding: 0.5em 1.2em; /* @boilerplate */
+  --button-padding: 0.75em 1.75em;
   --button-border-width: 2px; /* @boilerplate */
-  --button-border-radius: 2.4em; /* @boilerplate */
+  --button-border-radius: 4px;
   --button-font-weight: 500; /* @boilerplate */
   --button-line-height: 1.25; /* @boilerplate */
-  --button-background: var(--color-action); /* @boilerplate */
-  --button-hover-background: var(--color-action-hover); /* @boilerplate */
+  --button-background: var(--brand-secondary);
+  --button-hover-background: var(--brand-secondary-hover);
   --button-text-color: var(--background-color); /* @boilerplate */
   --button-disabled-background: var(--light-color); /* @boilerplate */
 
@@ -487,6 +493,9 @@ main > .section:first-of-type { /* @boilerplate */
     --spacing-m: 20px; /* @boilerplate */
     --spacing-s: 16px; /* @boilerplate */
     --spacing-xs: 12px; /* @boilerplate */
+
+    /* TELUS header: utility bar (40px) + main nav bar (76px) */
+    --nav-height: 116px;
   }
 
   body[data-breadcrumbs] { /* @boilerplate */
@@ -607,4 +616,77 @@ main .section.highlight { /* @boilerplate */
   background-color: var(--light-color); /* @boilerplate */
   margin: 0; /* @boilerplate */
   padding: var(--spacing-xl) 0; /* @boilerplate */
+}
+
+/* section style: purple — TELUS brand purple background with white text */
+main .section.purple {
+  background-color: var(--brand-primary);
+  color: var(--background-color);
+
+  --link-color: var(--background-color);
+  --link-hover-color: var(--background-color);
+}
+
+/*
+ * Section style: offers-grid
+ * Arranges every block in the section side by side (stacked on mobile).
+ * Default content (headings, intro text, links) spans the full width above.
+ * The blocks themselves know nothing about the grid.
+ */
+main .section.offers-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-l);
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  padding: var(--spacing-xxl) var(--spacing-m);
+  box-sizing: border-box;
+}
+
+main .section.offers-grid > div:not(.bg-image) {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+main .section.offers-grid > .default-content-wrapper {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: var(--spacing-l);
+}
+
+main .section.offers-grid > .default-content-wrapper h2 {
+  margin: 0;
+  color: var(--brand-primary);
+}
+
+main .section.offers-grid > .default-content-wrapper p {
+  margin: 0;
+}
+
+main .section.offers-grid > div:not(.default-content-wrapper) {
+  display: flex;
+}
+
+main .section.offers-grid > div:not(.default-content-wrapper) > * {
+  flex: 1;
+}
+
+@media (width >= 600px) {
+  main .section.offers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  main .section.offers-grid {
+    /* up to 3 per row; fewer blocks stretch to fill the row */
+    grid-template-columns: repeat(auto-fit, minmax(max(260px, calc((100% - 2 * var(--spacing-xl)) / 3)), 1fr));
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
 }

@@ -1,0 +1,23 @@
+/* TELUS page template — page-level look shared by every TELUS page */
+body.telus {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+body.telus main h1,
+body.telus main h2 {
+  letter-spacing: -0.02em;
+}
+
+body.telus main > .section h2 {
+  color: var(--brand-primary);
+}
+
+body.telus main > .section.purple h2,
+body.telus main > .section.purple h1 {
+  color: var(--background-color);
+}
+
+body.telus main > .section.light {
+  background-color: var(--light-color);
+}
