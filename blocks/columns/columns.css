@@ -52,7 +52,7 @@
   font-size: 16px;
 }
 
-.columns.app p:has(> small) {
+.columns.app p:has(> em:only-child) {
   margin-top: -8px;
   font-size: 13px;
 }
@@ -65,14 +65,16 @@
   margin-top: var(--spacing-m);
 }
 
-.columns.app p:has(picture) img {
+/* QR code: an image in the text column ... */
+.columns.app > div > div:not(.columns-img-col) picture img {
   display: block;
-  height: 40px;
+  height: 120px;
   width: auto;
 }
 
-.columns.app p:has(picture) > picture:first-child img {
-  height: 120px;
+/* ... store badges: linked images */
+.columns.app > div > div:not(.columns-img-col) a picture img {
+  height: 40px;
 }
 
 .columns.app .columns-img-col {
@@ -109,7 +111,8 @@
   line-height: 1.5;
 }
 
-.columns.info p:has(> picture) {
+/* round icon (with or without a wrapping paragraph) */
+.columns.info picture {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +123,7 @@
   background-color: var(--light-color);
 }
 
-.columns.info p > picture img {
+.columns.info picture img {
   display: block;
   width: 28px;
   height: 28px;
