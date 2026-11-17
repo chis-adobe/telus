@@ -55,12 +55,19 @@ export function buildQueryUrl(path) {
 
 /**
  * Fetches the offer fragment.
+ *
+ * Cache busting: the AEM CDN caches persisted query responses for up to 2 hours
+ * (s-maxage=7200), so a changed fragment would not show up right away. A unique
+ * "ck" query parameter makes every request bypass that cache and read the current
+ * fragment from AEM publish; cache: 'no-store' also skips the browser cache.
  * @param {string} path Content Fragment path
  * @returns {Promise<object|null>} the fragment item
  */
 async function fetchOffer(path) {
-  const resp = await fetch(buildQueryUrl(path), {
+  const url = `${buildQueryUrl(path)}?ck=${Date.now()}`;
+  const resp = await fetch(url, {
     headers: { Accept: 'application/json' },
+    cache: 'no-store',
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
   if (!resp.ok) throw new Error(`GraphQL request failed: ${resp.status}`);
